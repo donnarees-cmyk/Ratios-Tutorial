@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mrs. Francis' Classroom - MA.6.AR.3 Ratios Master Lab</title>
+  <!-- Google Fonts: Lexend and Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --navy-primary: #1e293b;
+      --navy-dark: #0f172a;
+      --terracotta: #c2410c;
+      --terracotta-light: #ffedd5;
+      --sage-green: #15803d;
+      --sage-light: #dcfce7;
+      --amber: #b45309;
+      --amber-light: #fef3c7;
+      --cyan-accent: #0284c7;
+      --cyan-light: #e0f2fe;
+      --border-color: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 6px 18px rgba(0,0,0,0.06);
+      --font-body: 'Lexend', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    /* Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+      color: #ffffff;
+      padding: 28px 32px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-bottom: 4px solid var(--terracotta);
+    }
+
+    .header-badge {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .header-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .header-subtitle {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      max-width: 650px;
+    }
+
+    .btn-print-header {
+      background: var(--terracotta);
+      color: #ffffff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(194, 65, 12, 0.3);
+    }
+
+    .btn-print-header:hover {
+      background: #9a3412;
+      transform: translateY(-2px);
+    }
+
+    /* Layout Structure */
+    .tabs-nav {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .tab-btn {
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--navy-primary);
+      color: var(--navy-primary);
+    }
+
+    .tab-btn.active {
+      background: var(--navy-primary);
+      color: #ffffff;
+      border-color: var(--navy-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Interactive Controls */
+    .slider-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg-main);
+      padding: 16px 20px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .slider-group label {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--navy-dark);
+      min-width: 140px;
+    }
+
+    .slider-group input[type="range"] {
+      flex: 1;
+      accent-color: var(--terracotta);
+      height: 8px;
+      cursor: pointer;
+    }
+
+    .slider-val {
+      background: var(--terracotta);
+      color: #ffffff;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    /* Station 1 Canvas Visualizer */
+    .canvas-flex {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 900px) {
+      .canvas-flex {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .canvas-box {
+      background: #0f172a;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--navy-dark);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 280px;
+    }
+
+    .recipe-info-card {
+      background: var(--bg-main);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .info-stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .info-stat-label {
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .info-stat-value {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--navy-dark);
+    }
+
+    /* Station 2 Double Number Line & Table */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+
+    .ratio-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .ratio-table th, .ratio-table td {
+      border: 2px solid var(--border-color);
+      padding: 12px 16px;
+    }
+
+    .ratio-table th {
+      background: var(--navy-primary);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .ratio-table td input {
+      width: 60px;
+      padding: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      font-family: var(--font-body);
+    }
+
+    .ratio-table td input.correct {
+      border-color: var(--sage-green);
+      background: var(--sage-light);
+      color: var(--sage-green);
+    }
+
+    .ratio-table td input.incorrect {
+      border-color: var(--terracotta);
+      background: var(--terracotta-light);
+      color: var(--terracotta);
+    }
+
+    /* Station 3 Coordinate Plotter */
+    .plotter-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 900px) {
+      .plotter-grid {
+        grid-template-columns: 1fr 300px;
+      }
+    }
+
+    .point-list {
+      background: var(--bg-main);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .point-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: #ffffff;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Station 4 Drag & Drop */
+    .drag-instructions {
+      background: var(--cyan-light);
+      border-left: 4px solid var(--cyan-accent);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      color: var(--navy-dark);
+      font-weight: 500;
+    }
+
+    .drag-cards-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      min-height: 80px;
+      padding: 16px;
+      background: var(--bg-main);
+      border: 2px dashed var(--border-color);
+      border-radius: 14px;
+      margin-bottom: 24px;
+    }
+
+    .drag-card {
+      background: #ffffff;
+      border: 2px solid var(--navy-primary);
+      color: var(--navy-primary);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: grab;
+      user-select: none;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+
+    .drag-card:active {
+      cursor: grabbing;
+      transform: scale(1.05);
+    }
+
+    .drop-zones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .drop-zone {
+      background: #ffffff;
+      border: 2px dashed var(--border-color);
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    .drop-zone.drag-over {
+      background: var(--amber-light);
+      border-color: var(--amber);
+    }
+
+    .drop-zone-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--navy-dark);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    /* FAST Assessment Quiz */
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background: var(--bg-main);
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .score-badge {
+      background: var(--sage-green);
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .dok-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .dok-1 { background: #e0f2fe; color: #0369a1; }
+    .dok-2 { background: #fef3c7; color: #b45309; }
+    .dok-3 { background: #ffedd5; color: #c2410c; }
+
+    .question-card {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy-dark);
+      margin-bottom: 18px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      color: var(--text-dark);
+      padding: 14px 18px;
+      border-radius: 12px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--navy-primary);
+      background: #f1f5f9;
+    }
+
+    .option-btn.correct {
+      background: var(--sage-light) !important;
+      border-color: var(--sage-green) !important;
+      color: var(--sage-green) !important;
+      font-weight: 700;
+    }
+
+    .option-btn.incorrect {
+      background: var(--terracotta-light) !important;
+      border-color: var(--terracotta) !important;
+      color: var(--terracotta) !important;
+      font-weight: 700;
+    }
+
+    .rationale-box {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      display: none;
+      line-height: 1.6;
+    }
+
+    .rationale-box.visible {
+      display: block;
+    }
+
+    .rationale-box.correct {
+      background: var(--sage-light);
+      border: 1px solid var(--sage-green);
+      color: #14532d;
+    }
+
+    .rationale-box.incorrect {
+      background: var(--terracotta-light);
+      border: 1px solid var(--terracotta);
+      color: #7c2d12;
+    }
+
+    .quiz-pagination {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .btn {
+      background: var(--navy-primary);
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.2s;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: var(--navy-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-dark);
+      border: 2px solid var(--border-color);
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    /* Quick-Reference Guide Cards */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .ref-card {
+      background: var(--bg-main);
+      border-left: 4px solid var(--terracotta);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 0.9rem;
+    }
+
+    .ref-card h4 {
+      color: var(--navy-dark);
+      font-family: var(--font-heading);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Banner -->
+  <header class="header-banner">
+    <div>
+      <span class="header-badge">Florida B.E.S.T. Standard MA.6.AR.3.1</span>
+      <h1 class="header-title">Mrs. Francis' Classroom: Ratio Master Lab</h1>
+      <p class="header-subtitle">Master equivalent ratios, tape diagrams, double number lines, coordinate plotting, and FAST math problem solving!</p>
+    </div>
+    <div>
+      <button class="btn-print-header" onclick="openPrintModal()">
+        <span>🖨️</span> Print Exit Ticket
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('station1')">📊 Station 1: Recipe & Tape Diagram</button>
+    <button class="tab-btn" onclick="switchTab('station2')">📏 Station 2: Double Number Line & Table</button>
+    <button class="tab-btn" onclick="switchTab('station3')">📈 Station 3: Coordinate Plotter</button>
+    <button class="tab-btn" onclick="switchTab('station4')">🧩 Station 4: Drag & Drop Classifier</button>
+    <button class="tab-btn" onclick="switchTab('reference')">📘 Mrs. Francis' Ratio Quick-Reference Guide</button>
+    <button class="tab-btn" onclick="switchTab('quiz')">📝 FAST Assessment Practice</button>
+  </nav>
+
+  <!-- STATION 1: MIXTURE SIMULATOR & TAPE DIAGRAM -->
+  <div id="station1" class="tab-content active">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">🧪 Dynamic Fruit Punch Mixture & Tape Diagram Simulator</h2>
+        <span style="font-weight: 600; color: var(--terracotta);">Base Ratio = 3 Cups Red Punch : 2 Cups Yellow Juice</span>
+      </div>
+
+      <div class="slider-group">
+        <label for="batchSlider">Recipe Batches:</label>
+        <input type="range" id="batchSlider" min="1" max="8" value="1" oninput="updateStation1()">
+        <span class="slider-val" id="batchVal">1×</span>
+      </div>
+
+      <div class="canvas-flex">
+        <div class="canvas-box">
+          <canvas id="tapeCanvas" width="450" height="280"></canvas>
+        </div>
+
+        <div class="recipe-info-card">
+          <h3 style="font-family: var(--font-heading); color: var(--navy-dark); margin-bottom: 4px;">Live Recipe Scaling</h3>
+          
+          <div class="info-stat-row">
+            <span class="info-stat-label">Red Punch Cups (Part A):</span>
+            <span class="info-stat-value" id="redCupsVal" style="color: #dc2626;">3 cups</span>
+          </div>
+
+          <div class="info-stat-row">
+            <span class="info-stat-label">Yellow Juice Cups (Part B):</span>
+            <span class="info-stat-value" id="yellowCupsVal" style="color: #d97706;">2 cups</span>
+          </div>
+
+          <div class="info-stat-row">
+            <span class="info-stat-label">Total Liquid Punch (Whole):</span>
+            <span class="info-stat-value" id="totalCupsVal" style="color: var(--navy-dark);">5 cups</span>
+          </div>
+
+          <div class="info-stat-row">
+            <span class="info-stat-label">Equivalent Ratio Notation:</span>
+            <span class="info-stat-value" id="ratioNotationVal" style="color: var(--terracotta);">3 : 2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATION 2: DOUBLE NUMBER LINE & TABLE -->
+  <div id="station2" class="tab-content">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">📏 Double Number Line & Interactive Ratio Table</h2>
+        <span style="font-weight: 600; color: var(--navy-primary);">Distance Traveled at Constant Speed</span>
+      </div>
+
+      <div class="canvas-box" style="margin-bottom: 20px;">
+        <canvas id="numLineCanvas" width="900" height="180"></canvas>
+      </div>
+
+      <h3 style="font-family: var(--font-heading); margin-bottom: 10px;">Complete the Equivalent Ratio Table:</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px;">Fill in the missing values based on the constant speed ratio of <strong>45 miles every 1 hour</strong>.</p>
+
+      <div class="table-container">
+        <table class="ratio-table">
+          <thead>
+            <tr>
+              <th>Time (Hours)</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>5</th>
+              <th>8</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight: 700;">Distance (Miles)</td>
+              <td>45</td>
+              <td><input type="number" id="tbl1" onkeyup="checkTableInput(this, 90)"></td>
+              <td><input type="number" id="tbl2" onkeyup="checkTableInput(this, 135)"></td>
+              <td><input type="number" id="tbl3" onkeyup="checkTableInput(this, 225)"></td>
+              <td><input type="number" id="tbl4" onkeyup="checkTableInput(this, 360)"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATION 3: COORDINATE PLOTTER -->
+  <div id="station3" class="tab-content">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">📈 Proportional Coordinate Plane Plotter</h2>
+        <span style="font-weight: 600; color: var(--sage-green);">Click Grid to Plot Points (x = Hours, y = Earnings)</span>
+      </div>
+
+      <div class="plotter-grid">
+        <div class="canvas-box">
+          <canvas id="gridCanvas" width="550" height="380" onclick="plotGridPoint(event)"></canvas>
+        </div>
+
+        <div>
+          <div class="point-list">
+            <h4 style="font-family: var(--font-heading); margin-bottom: 10px;">Plotted Equivalent Ratios:</h4>
+            <div id="plottedPoints">
+              <div class="point-item"><span>Point (1, 12)</span><span style="color: var(--sage-green);">$12 / 1 hr</span></div>
+            </div>
+            <button class="btn" style="width: 100%; margin-top: 12px;" onclick="resetGrid()">Reset Graph</button>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 12px;">
+            <strong>Mrs. Francis' Tip:</strong> Notice how all equivalent ratios fall directly on a straight ray starting at the origin $(0,0)$!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATION 4: DRAG & DROP CLASSIFIER -->
+  <div id="station4" class="tab-content">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">🧩 Equivalent Ratio Drag & Drop Station</h2>
+        <button class="btn btn-secondary" onclick="resetDragDrop()">Reset Cards</button>
+      </div>
+
+      <div class="drag-instructions">
+        <strong>Instruction:</strong> Drag each ratio tile below into its correct <strong>Simplified Equivalent Ratio Family</strong> container!
+      </div>
+
+      <div class="drag-cards-pool" id="cardsPool" ondragover="allowDrop(event)" ondrop="dropCard(event)">
+        <div class="drag-card" draggable="true" ondragstart="drag(event)" id="c1" data-family="2:3">4 : 6</div>
+        <div class="drag-card" draggable="true" ondragstart="drag(event)" id="c2" data-family="3:4">9 : 12</div>
+        <div class="drag-card" draggable="true" ondragstart="drag(event)" id="c3" data-family="2:5">6 : 15</div>
+        <div class="drag-card" draggable="true" ondragstart="drag(event)" id="c4" data-family="2:3">10 : 15</div>
+        <div class="drag-card" draggable="true" ondragstart="drag(event)" id="c5" data-family="3:4">15 : 20</div>
+        <div class="drag-card" draggable="true" ondragstart="drag(event)" id="c6" data-family="2:5">8 : 20</div>
+        <div class="drag-card" draggable="true" ondragstart="drag(event)" id="c7" data-family="2:3">16 : 24</div>
+        <div class="drag-card" draggable="true" ondragstart="drag(event)" id="c8" data-family="3:4">21 : 28</div>
+      </div>
+
+      <div class="drop-zones-grid">
+        <div class="drop-zone" ondragover="allowDrop(event)" ondrop="dropCard(event)" data-target="2:3">
+          <div class="drop-zone-title" style="color: var(--terracotta);">Family 2 : 3</div>
+        </div>
+
+        <div class="drop-zone" ondragover="allowDrop(event)" ondrop="dropCard(event)" data-target="3:4">
+          <div class="drop-zone-title" style="color: var(--cyan-accent);">Family 3 : 4</div>
+        </div>
+
+        <div class="drop-zone" ondragover="allowDrop(event)" ondrop="dropCard(event)" data-target="2:5">
+          <div class="drop-zone-title" style="color: var(--sage-green);">Family 2 : 5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MRS. FRANCIS' RATIO QUICK-REFERENCE GUIDE -->
+  <div id="reference" class="tab-content">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">📘 Mrs. Francis' Ratio Quick-Reference Guide</h2>
+        <span style="font-weight: 600; color: var(--terracotta);">Core Benchmark Concepts & Representations</span>
+      </div>
+
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h4>1. What is a Ratio?</h4>
+          <p>A ratio compares two quantities. It can be written in three ways: <strong>3 to 2</strong>, <strong>3 : 2</strong>, or as a fraction <strong>3/2</strong>.</p>
+        </div>
+
+        <div class="ref-card" style="border-left-color: var(--cyan-accent);">
+          <h4>2. Equivalent Ratios</h4>
+          <p>Ratios that express the same relationship between numbers. Multiply or divide both terms by the same non-zero number (e.g., $3:2 = 6:4 = 9:6$).</p>
+        </div>
+
+        <div class="ref-card" style="border-left-color: var(--sage-green);">
+          <h4>3. Part-to-Part vs. Part-to-Whole</h4>
+          <p><strong>Part-to-Part:</strong> Compares one group to another (e.g., 3 Red : 2 Yellow).<br><strong>Part-to-Whole:</strong> Compares one group to the total (e.g., 3 Red : 5 Total).</p>
+        </div>
+
+        <div class="ref-card" style="border-left-color: var(--amber);">
+          <h4>4. Proportional Graphs</h4>
+          <p>When plotted on a coordinate plane, equivalent ratios form a straight line passing directly through the origin <strong>$(0, 0)$</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAST ASSESSMENT PRACTICE QUIZ -->
+  <div id="quiz" class="tab-content">
+    <div class="card">
+      <div class="quiz-nav">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-weight: 800; font-size: 1.1rem; color: var(--navy-dark);">FAST State Assessment Suite</span>
+          <span class="dok-badge dok-2" id="dokDisplay">DOK Level 2</span>
+        </div>
+        <span class="score-badge" id="scoreDisplay">Score: 0 / 8</span>
+      </div>
+
+      <div id="quizContainer">
+        <!-- Question injected dynamically -->
+      </div>
+
+      <div class="quiz-pagination">
+        <button class="btn btn-secondary" id="prevBtn" onclick="navigateQuiz(-1)" disabled>Previous</button>
+        <span id="quizProgress" style="align-self: center; font-weight: 700; color: var(--text-muted); font-size: 0.9rem;">Question 1 of 8</span>
+        <button class="btn" id="nextBtn" onclick="navigateQuiz(1)">Next Question</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINT EXIT TICKET MODAL -->
+  <div class="modal-overlay" id="printModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="font-family: var(--font-heading); color: var(--navy-dark);">🖨️ Printable Student Recording Sheet</h3>
+        <button class="close-btn" onclick="closePrintModal()">&times;</button>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;">
+        Name: _______________________ Date: ____________ Period: ______
+      </p>
+
+      <div style="border: 2px dashed var(--border-color); padding: 20px; border-radius: 12px; font-size: 0.9rem;">
+        <h4 style="color: var(--terracotta); margin-bottom: 8px;">Station 1 Exit Check: Tape Diagram</h4>
+        <p>A fruit smoothie uses a ratio of 4 strawberries to 3 bananas.</p>
+        <p>1. Draw a tape diagram showing 3 full batches of smoothies.</p>
+        <p style="margin-top: 30px;">2. Total Strawberries: _____ Total Bananas: _____ Total Fruit: _____</p>
+
+        <h4 style="color: var(--navy-dark); margin-top: 20px; margin-bottom: 8px;">Station 2 Exit Check: Ratio Table</h4>
+        <p>A car travels 120 miles in 2 hours at constant speed. Complete the table:</p>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 8px; text-align: center;">
+          <tr style="background: var(--bg-main);"><th style="border: 1px solid #000;">Hours</th><th style="border: 1px solid #000;">1</th><th style="border: 1px solid #000;">2</th><th style="border: 1px solid #000;">4</th></tr>
+          <tr><td style="border: 1px solid #000;">Miles</td><td style="border: 1px solid #000;"></td><td style="border: 1px solid #000;">120</td><td style="border: 1px solid #000;"></td></tr>
+        </table>
+      </div>
+
+      <div style="margin-top: 20px; text-align: right;">
+        <button class="btn" onclick="window.print()">Print Worksheet Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================
+       TAB SWITCHING SYSTEM
+       ========================================== */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+
+      if (tabId === 'station1') drawTapeDiagram();
+      if (tabId === 'station2') drawNumberLine();
+      if (tabId === 'station3') drawGrid();
+    }
+
+    /* ==========================================
+       STATION 1: TAPE DIAGRAM CANVAS
+       ========================================== */
+    function updateStation1() {
+      const batches = parseInt(document.getElementById('batchSlider').value);
+      document.getElementById('batchVal').innerText = batches + '×';
+
+      const red = 3 * batches;
+      const yellow = 2 * batches;
+      const total = red + yellow;
+
+      document.getElementById('redCupsVal').innerText = red + ' cups';
+      document.getElementById('yellowCupsVal').innerText = yellow + ' cups';
+      document.getElementById('totalCupsVal').innerText = total + ' cups';
+      document.getElementById('ratioNotationVal').innerText = red + ' : ' + yellow;
+
+      drawTapeDiagram();
+    }
+
+    function drawTapeDiagram() {
+      const canvas = document.getElementById('tapeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const batches = parseInt(document.getElementById('batchSlider').value);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = 'bold 14px Lexend';
+      ctx.fillStyle = '#ef4444';
+      ctx.fillText('Red Punch (3 Units per Batch)', 20, 30);
+
+      // Draw Red Tape Boxes
+      for (let i = 0; i < 3; i++) {
+        ctx.fillStyle = '#dc2626';
+        ctx.fillRect(20 + i * 130, 45, 120, 50);
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(20 + i * 130, 45, 120, 50);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px Lexend';
+        ctx.fillText(`${batches} cups`, 50 + i * 130, 75);
+      }
+
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillText('Yellow Juice (2 Units per Batch)', 20, 140);
+
+      // Draw Yellow Tape Boxes
+      for (let i = 0; i < 2; i++) {
+        ctx.fillStyle = '#d97706';
+        ctx.fillRect(20 + i * 130, 155, 120, 50);
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(20 + i * 130, 155, 120, 50);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px Lexend';
+        ctx.fillText(`${batches} cups`, 50 + i * 130, 185);
+      }
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px Lexend';
+      ctx.fillText(`Total Units = 5 Boxes × ${batches} cups = ${5 * batches} Total Cups`, 20, 245);
+    }
+
+    /* ==========================================
+       STATION 2: DOUBLE NUMBER LINE CANVAS & TABLE
+       ========================================== */
+    function drawNumberLine() {
+      const canvas = document.getElementById('numLineCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Top Line: Time
+      ctx.strokeStyle = '#0284c7';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(60, 50); ctx.lineTo(840, 50);
+      ctx.stroke();
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 13px Lexend';
+      ctx.fillText('Time (Hours)', 60, 30);
+
+      // Bottom Line: Distance
+      ctx.strokeStyle = '#c2410c';
+      ctx.beginPath();
+      ctx.moveTo(60, 120); ctx.lineTo(840, 120);
+      ctx.stroke();
+
+      ctx.fillStyle = '#fb923c';
+      ctx.fillText('Distance (Miles)', 60, 150);
+
+      // Tick Marks
+      const ticks = [0, 1, 2, 3, 4, 5, 6];
+      ticks.forEach((t, i) => {
+        let x = 80 + i * 120;
+
+        // Top Tick
+        ctx.strokeStyle = '#0284c7';
+        ctx.beginPath(); ctx.moveTo(x, 40); ctx.lineTo(x, 60); ctx.stroke();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '13px Lexend';
+        ctx.fillText(t + ' hr', x - 12, 30);
+
+        // Bottom Tick
+        ctx.strokeStyle = '#c2410c';
+        ctx.beginPath(); ctx.moveTo(x, 110); ctx.lineTo(x, 130); ctx.stroke();
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(t * 45 + ' mi', x - 18, 150);
+
+        // Dashed connector
+        ctx.setLineDash([4, 4]);
+        ctx.strokeStyle = '#334155';
+        ctx.beginPath(); ctx.moveTo(x, 60); ctx.lineTo(x, 110); ctx.stroke();
+        ctx.setLineDash([]);
+      });
+    }
+
+    function checkTableInput(input, correctVal) {
+      if (parseInt(input.value) === correctVal) {
+        input.className = 'correct';
+      } else if (input.value !== '') {
+        input.className = 'incorrect';
+      } else {
+        input.className = '';
+      }
+    }
+
+    /* ==========================================
+       STATION 3: COORDINATE GRID CANVAS
+       ========================================== */
+    let points = [{ x: 1, y: 12 }];
+
+    function drawGrid() {
+      const canvas = document.getElementById('gridCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw Grid Lines
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1;
+
+      for (let x = 50; x < 550; x += 50) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 340); ctx.stroke();
+      }
+      for (let y = 0; y < 340; y += 34) {
+        ctx.beginPath(); ctx.moveTo(50, y); ctx.lineTo(550, y); ctx.stroke();
+      }
+
+      // Draw Axes
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(50, 0); ctx.lineTo(50, 340); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(50, 340); ctx.lineTo(550, 340); ctx.stroke();
+
+      // Labels
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '11px Lexend';
+      ctx.fillText('Earnings ($)', 10, 20);
+      ctx.fillText('Hours (x)', 480, 365);
+
+      // Proportional Ray
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(50, 340);
+      ctx.lineTo(50 + 8 * 50, 340 - 8 * 34);
+      ctx.stroke();
+
+      // Plot Points
+      points.forEach(p => {
+        let cx = 50 + p.x * 50;
+        let cy = 340 - (p.y / 12) * 34;
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      });
+    }
+
+    function plotGridPoint(e) {
+      const rect = e.target.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const hour = Math.round((clickX - 50) / 50);
+
+      if (hour >= 1 && hour <= 8) {
+        const earnings = hour * 12;
+        if (!points.some(p => p.x === hour)) {
+          points.push({ x: hour, y: earnings });
+          updatePointList();
+          drawGrid();
+        }
+      }
+    }
+
+    function updatePointList() {
+      const container = document.getElementById('plottedPoints');
+      container.innerHTML = points.map(p => `
+        <div class="point-item">
+          <span>Point (${p.x}, ${p.y})</span>
+          <span style="color: var(--sage-green);">$${p.y} / ${p.x} hr</span>
+        </div>
+      `).join('');
+    }
+
+    function resetGrid() {
+      points = [{ x: 1, y: 12 }];
+      updatePointList();
+      drawGrid();
+    }
+
+    /* ==========================================
+       STATION 4: DRAG & DROP LOGIC
+       ========================================== */
+    function allowDrop(e) {
+      e.preventDefault();
+      if (e.currentTarget.classList.contains('drop-zone')) {
+        e.currentTarget.classList.add('drag-over');
+      }
+    }
+
+    function drag(e) {
+      e.dataTransfer.setData("text", e.target.id);
+    }
+
+    function dropCard(e) {
+      e.preventDefault();
+      document.querySelectorAll('.drop-zone').forEach(z => z.classList.remove('drag-over'));
+
+      const cardId = e.dataTransfer.getData("text");
+      const card = document.getElementById(cardId);
+      const targetZone = e.currentTarget;
+
+      if (targetZone.classList.contains('drop-zone')) {
+        const family = card.getAttribute('data-family');
+        const targetFamily = targetZone.getAttribute('data-target');
+
+        if (family === targetFamily) {
+          card.style.borderColor = 'var(--sage-green)';
+          card.style.background = 'var(--sage-light)';
+        } else {
+          card.style.borderColor = 'var(--terracotta)';
+          card.style.background = 'var(--terracotta-light)';
+        }
+        targetZone.appendChild(card);
+      } else if (targetZone.id === 'cardsPool') {
+        card.style.borderColor = 'var(--navy-primary)';
+        card.style.background = '#ffffff';
+        targetZone.appendChild(card);
+      }
+    }
+
+    function resetDragDrop() {
+      const pool = document.getElementById('cardsPool');
+      document.querySelectorAll('.drag-card').forEach(card => {
+        card.style.borderColor = 'var(--navy-primary)';
+        card.style.background = '#ffffff';
+        pool.appendChild(card);
+      });
+    }
+
+    /* ==========================================
+       FAST ASSESSMENT QUIZ ENGINE
+       ========================================== */
+    const quizData = [
+      {
+        id: 1,
+        dok: "DOK Level 1",
+        dokClass: "dok-1",
+        question: "A recipe uses 4 cups of flour for every 3 cups of sugar. Which notation correctly represents the ratio of sugar to flour?",
+        options: [
+          "A. 4 : 3",
+          "B. 3 : 4",
+          "C. 4 : 7",
+          "D. 3 : 7"
+        ],
+        correct: 1,
+        rationale: "Correct! Pay close attention to the order requested. The question asks for sugar (3 cups) to flour (4 cups), making the correct ratio 3 : 4."
+      },
+      {
+        id: 2,
+        dok: "DOK Level 2",
+        dokClass: "dok-2",
+        question: "Mrs. Francis buys a 6-pack of juice boxes for $4.50. Which equivalent ratio represents the cost for 18 juice boxes?",
+        options: [
+          "A. $9.00",
+          "B. $12.50",
+          "C. $13.50",
+          "D. $18.00"
+        ],
+        correct: 2,
+        rationale: "Correct! To scale from 6 juice boxes to 18 juice boxes, multiply by 3 ($18 \\div 6 = 3$). Multiply $4.50 \\times 3 =$13.50."
+      },
+      {
+        id: 3,
+        dok: "DOK Level 2",
+        dokClass: "dok-2",
+        question: "A tape diagram shows a ratio of 5 blue marbles to 2 green marbles. If there are 35 blue marbles in total, how many green marbles are there?",
+        options: [
+          "A. 10 green marbles",
+          "B. 14 green marbles",
+          "C. 20 green marbles",
+          "D. 25 green marbles"
+        ],
+        correct: 1,
+        rationale: "Correct! Each unit box in the tape diagram represents $35 \\div 5 = 7$ marbles. Multiply 2 green boxes $\\times 7 = 14$ green marbles."
+      },
+      {
+        id: 4,
+        dok: "DOK Level 3",
+        dokClass: "dok-3",
+        question: "This question has two parts.\n\nPart A: A red paint and white paint mixture uses a ratio of 2:5. If a painter creates 28 total gallons of mixed paint, how many gallons of red paint were used?",
+        options: [
+          "A. 8 gallons of red paint",
+          "B. 10 gallons of red paint",
+          "C. 12 gallons of red paint",
+          "D. 20 gallons of red paint"
+        ],
+        correct: 0,
+        rationale: "Correct! The total parts equal $2 + 5 = 7$ parts. Each part is worth $28 \\div 7 = 4$ gallons. Red paint uses 2 parts $\\times 4 = 8$ gallons."
+      },
+      {
+        id: 5,
+        dok: "DOK Level 3",
+        dokClass: "dok-3",
+        question: "Part B: How many gallons of white paint were used in the mixture above?",
+        options: [
+          "A. 14 gallons",
+          "B. 20 gallons",
+          "C. 22 gallons",
+          "D. 25 gallons"
+        ],
+        correct: 1,
+        rationale: "Correct! White paint uses 5 parts $\\times 4$ gallons per part $= 20$ gallons of white paint ($8 + 20 = 28$ total gallons)."
+      },
+      {
+        id: 6,
+        dok: "DOK Level 2",
+        dokClass: "dok-2",
+        question: "Which point on a coordinate plane represents an equivalent ratio to (2, 8) if x represents hours and y represents miles?",
+        options: [
+          "A. (3, 10)",
+          "B. (4, 16)",
+          "C. (5, 20)",
+          "D. (6, 24)"
+        ],
+        correct: 3,
+        rationale: "Correct! The unit rate is $8 \\div 2 = 4$ miles per hour. Point (6, 24) satisfies $6 \\times 4 = 24$ miles."
+      },
+      {
+        id: 7,
+        dok: "DOK Level 2",
+        dokClass: "dok-2",
+        question: "A car travels at a constant speed, covering 150 miles in 3 hours. How far will the car travel in 7 hours at this same rate?",
+        options: [
+          "A. 300 miles",
+          "B. 320 miles",
+          "C. 350 miles",
+          "D. 400 miles"
+        ],
+        correct: 2,
+        rationale: "Correct! First find the unit rate: $150 \\div 3 = 50$ mph. Then multiply $50 \\times 7 = 350$ miles."
+      },
+      {
+        id: 8,
+        dok: "DOK Level 1",
+        dokClass: "dok-1",
+        question: "Which pair of ratios are equivalent?",
+        options: [
+          "A. 3 : 5 and 12 : 20",
+          "B. 2 : 3 and 4 : 9",
+          "C. 5 : 6 and 10 : 11",
+          "D. 1 : 4 and 3 : 8"
+        ],
+        correct: 0,
+        rationale: "Correct! $3 \\times 4 = 12$ and $5 \\times 4 = 20$. Both terms are multiplied by the same scale factor (4)."
+      }
+    ];
+
+    let currentQIdx = 0;
+    let userAnswers = new Array(quizData.length).fill(null);
+
+    function renderQuestion(idx) {
+      const q = quizData[idx];
+      const container = document.getElementById('quizContainer');
+
+      document.getElementById('dokDisplay').innerText = q.dok;
+      document.getElementById('dokDisplay').className = `dok-badge ${q.dokClass}`;
+
+      let optionsHTML = q.options.map((opt, oIdx) => {
+        let btnClass = 'option-btn';
+        if (userAnswers[idx] !== null) {
+          if (oIdx === q.correct) btnClass += ' correct';
+          else if (oIdx === userAnswers[idx]) btnClass += ' incorrect';
+        }
+        return `<button class="${btnClass}" onclick="selectAnswer(${idx}, ${oIdx})" ${userAnswers[idx] !== null ? 'disabled' : ''}>${opt}</button>`;
+      }).join('');
+
+      let rationaleClass = 'rationale-box';
+      if (userAnswers[idx] !== null) {
+        rationaleClass += ' visible ' + (userAnswers[idx] === q.correct ? 'correct' : 'incorrect');
+      }
+
+      container.innerHTML = `
+        <div class="question-card">
+          <div class="question-text">Q${idx + 1}. ${q.question.replace(/\n/g, '<br>')}</div>
+          <div class="options-grid">${optionsHTML}</div>
+          <div class="${rationaleClass}">${q.rationale}</div>
+        </div>
+      `;
+
+      document.getElementById('prevBtn').disabled = idx === 0;
+      document.getElementById('nextBtn').disabled = idx === quizData.length - 1;
+      document.getElementById('quizProgress').innerText = `Question ${idx + 1} of ${quizData.length}`;
+      updateScore();
+    }
+
+    function selectAnswer(qIdx, oIdx) {
+      userAnswers[qIdx] = oIdx;
+      renderQuestion(qIdx);
+    }
+
+    function navigateQuiz(dir) {
+      currentQIdx += dir;
+      renderQuestion(currentQIdx);
+    }
+
+    function updateScore() {
+      let score = userAnswers.reduce((acc, ans, idx) => {
+        return ans === quizData[idx].correct ? acc + 1 : acc;
+      }, 0);
+      document.getElementById('scoreDisplay').innerText = `Score: ${score} / ${quizData.length}`;
+    }
+
+    /* ==========================================
+       PRINT MODAL SYSTEM
+       ========================================== */
+    function openPrintModal() {
+      document.getElementById('printModal').classList.add('active');
+    }
+
+    function closePrintModal() {
+      document.getElementById('printModal').classList.remove('active');
+    }
+
+    // Initialize default tab graphics
+    window.onload = function() {
+      drawTapeDiagram();
+      drawNumberLine();
+      drawGrid();
+      renderQuestion(0);
+    };
+  </script>
+</body>
+</html>
